@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Foreign key type:</strong>
+  <%= @descriptor.foreign_key_type %>
+</p>
+
+<p>
+  <strong>Foreign key:</strong>
+  <%= @descriptor.foreign_key_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @descriptor.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @descriptor.description_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @descriptor.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_descriptor_path(@descriptor) %> |
+<%= link_to 'Back', descriptors_path %>

@@ -1,0 +1,42 @@
+<%= form_for(descriptor) do |f| %>
+  <% if descriptor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(descriptor.errors.count, "error") %> prohibited this descriptor from being saved:</h2>
+
+      <ul>
+      <% descriptor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :foreign_key_type %>
+    <%= f.text_area :foreign_key_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :foreign_key_id %>
+    <%= f.number_field :foreign_key_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description_id %>
+    <%= f.number_field :description_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_id %>
+    <%= f.number_field :category_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

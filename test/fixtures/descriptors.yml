@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  foreign_key_type: MyText
+  foreign_key_id: 1
+  name: MyString
+  description_id: 1
+  category_id: 1
+
+two:
+  foreign_key_type: MyText
+  foreign_key_id: 1
+  name: MyString
+  description_id: 1
+  category_id: 1

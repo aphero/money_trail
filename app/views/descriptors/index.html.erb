@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Descriptors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Foreign key type</th>
+      <th>Foreign key</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @descriptors.each do |descriptor| %>
+      <tr>
+        <td><%= descriptor.foreign_key_type %></td>
+        <td><%= descriptor.foreign_key_id %></td>
+        <td><%= descriptor.name %></td>
+        <td><%= descriptor.description_id %></td>
+        <td><%= descriptor.category_id %></td>
+        <td><%= link_to 'Show', descriptor %></td>
+        <td><%= link_to 'Edit', edit_descriptor_path(descriptor) %></td>
+        <td><%= link_to 'Destroy', descriptor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Descriptor', new_descriptor_path %>

@@ -1,0 +1,47 @@
+<%= form_for(receipt) do |f| %>
+  <% if receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+
+      <ul>
+      <% receipt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :datetime %>
+    <%= f.datetime_select :datetime %>
+  </div>
+
+  <div class="field">
+    <%= f.label :store_id %>
+    <%= f.number_field :store_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :payment_method %>
+    <%= f.text_field :payment_method %>
+  </div>
+
+  <div class="field">
+    <%= f.label :order_number %>
+    <%= f.number_field :order_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :total %>
+    <%= f.text_field :total %>
+  </div>
+
+  <div class="field">
+    <%= f.label :currency %>
+    <%= f.text_field :currency %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

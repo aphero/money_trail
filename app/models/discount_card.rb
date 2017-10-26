@@ -1,0 +1,2 @@
+class DiscountCard < ApplicationRecord
+end

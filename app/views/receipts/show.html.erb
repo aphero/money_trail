@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Datetime:</strong>
+  <%= @receipt.datetime %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @receipt.store_id %>
+</p>
+
+<p>
+  <strong>Payment method:</strong>
+  <%= @receipt.payment_method %>
+</p>
+
+<p>
+  <strong>Order number:</strong>
+  <%= @receipt.order_number %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @receipt.total %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @receipt.currency %>
+</p>
+
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>
