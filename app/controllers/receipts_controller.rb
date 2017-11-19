@@ -15,6 +15,11 @@ class ReceiptsController < ApplicationController
   # GET /receipts/new
   def new
     @receipt = Receipt.new
+    @line_item = LineItem.new(receipt_id: @receipt.id)
+    @store = Store.new
+    @stores = Store.all
+    @location = Location.new
+    @locations = Location.all
   end
 
   # GET /receipts/1/edit

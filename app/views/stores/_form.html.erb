@@ -12,9 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :location_id %>
-    <%= f.number_field :location_id %>
+    <%= f.collection_select(:location_id, @locations, :id, :name, prompt: "Add Location") %>
   </div>
+
+  <h3>LOCATION</h3>
+  <%= render '/locations/form', location: @location %>
 
   <div class="field">
     <%= f.label :name %>

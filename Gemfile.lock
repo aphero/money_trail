@@ -39,7 +39,14 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (7.1.6)
+      execjs
     bindex (0.5.0)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
+    bootstrap3-datetimepicker-rails (4.17.47)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -77,6 +84,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.3)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nio4r (2.0.0)
     nokogiri (1.7.1)
@@ -155,11 +164,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (= 3.3.6)
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  momentjs-rails (>= 2.9.0)
   puma (~> 3.0)
   rails (~> 5.0.2)
   sass-rails (~> 5.0)
