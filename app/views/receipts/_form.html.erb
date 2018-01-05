@@ -1,54 +1,116 @@
-<%= form_for(receipt) do |f| %>
-  <% if receipt.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+<div id="container">
+  <%= form_for(receipt) do |f| %>
+    <% if receipt.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
 
-      <ul>
-      <% receipt.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-2">
-        <%= f.label :datetime %>
-        <%= f.text_field :datetime, id: "datetimepicker", class: "form-control" %>
-        <script type="text/javascript">
-          $(function () {
-            $('#datetimepicker').datetimepicker();
-          });
-        </script>
+        <ul>
+        <% receipt.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
       </div>
-    </div>
+    <% end %>
 
     <div class="field">
-      <%= f.collection_select(:store_id, @stores, :id, :name, prompt: "Add Store") %>
-    </div>
-
-    <div class="field">
-      <%= f.label :payment_method %>
-      <%= f.text_field :payment_method %>
-    </div>
-
-    <div class="field">
-      <%= f.label :order_number %>
+      <%= f.label :order_number %><br/>
       <%= f.number_field :order_number %>
     </div>
 
-    <div class="field">
-      <%= f.label :total %>
-      <%= f.text_field :total %>
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker1'>
+            <%= f.label :datetime %>
+            <%= f.text_field :datetime, id: "datetimepicker", class: "form-control" %>
+            <script type="text/javascript">
+              $(function () {
+                $('#datetimepicker').datetimepicker();
+              });
+            </script>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :currency %>
-      <%= f.text_field :currency %>
+    <div style="width:600px;display:flex;flex-direction:row;justify-content: space-around;">
+      <div id="store-for-receipt" style="height:130px;display:flex;flex-direction:column;">
+        <span>STORE</span>
+        <%= form_for @store do |s| %>
+          <div class="field">
+            <%= s.collection_select(:id, @stores, :id, :name, prompt: "New Store") %>
+          </div>
+
+          <div class="field" id="new-store">
+            <%= s.label :name %>
+            <%= s.text_field :name %>
+          </div>
+        <% end %>
+      </div>
+
+      <div style="display:flex;flex-direction:column;margin-left:30px;">
+        <div class="field">
+          <%= f.label :payment_method %>
+          Dropdown of payment methods
+        </div>
+
+        <div class="field">
+          <%= f.label :total %>
+          Total the line items here.<br/>
+          A user should not enter this on their own.
+        </div>
+
+        <div class="field">
+          <%= f.label :currency %>
+          A dropdown of currency types.
+        </div>
+      </div>
+    </div>
+
+    <div id="receipt-items">
+      <span>LINE ITEMS</span>
+      <% if @line_items.present? %>
+        <% @line_items.each do |line_item| %>
+          <%= line_item.product_id %>
+          <%= line_item.on_sale %>
+          <%= line_item.list_price %>
+          <%= line_item.sale_price %>
+        <% end %>
+      <% else %>
+        <span>No Line Items yet.</span>
+      <% end %>
+
+      <%= form_for @line_item do |item| %>
+        <div class="field" style="float:left;margin-right:10px;">
+          Product ID<br/>
+          <%= item.number_field :product_id %>
+        </div>
+
+        <div class="field" style="float:left;margin-right:10px;">
+          On Sale?<br/>
+          <%= item.select(:on_sale, options_for_select([["Yes", 1], ["No", 0]])) %>
+        </div>
+
+        <div class="field" style="float:left;margin-right:10px;">
+          List Price<br/>
+          <%= item.text_field :list_price %>
+        </div>
+
+        <div class="field" style="float:left;margin-right:10px;" id="line-item-sale-price">
+          Sale Price<br/>
+          <%= item.text_field :sale_price %>
+        </div>
+
+        <div class="actions" style="clear:both;margin-right:10px;">
+          <%= item.submit %>
+        </div>
+
+        Show added line items here in a table.
+      <% end %>
     </div>
 
     <div class="actions">
       <%= f.submit %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

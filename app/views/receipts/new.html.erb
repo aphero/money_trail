@@ -1,11 +1,3 @@
 <h1>New Receipt</h1>
-
 <%= render 'form', receipt: @receipt %>
-<h2>LINE ITEMS:</h2>
-<div class="line-items">
-  <%= render '/line_items/form', line_item: @line_item %>
-</div>
-<h2>STORE</h2>
-<%= render '/stores/form', store: @store %>
-
 <%= link_to 'Back', receipts_path %>

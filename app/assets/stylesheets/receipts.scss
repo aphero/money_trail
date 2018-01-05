@@ -1,6 +1,54 @@
 // Place all the styles related to the receipts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .line-items {
   display:inline-block;
+}
+
+#store-for-receipt {
+  background-color:aliceblue;
+  width:300px;
+  padding:10px 20px;
+  border-top:5px solid steelblue;
+  margin-bottom:20px;
+
+  span {
+    font-weight:bold;
+    font-size:2em;
+    color:steelblue;
+  }
+}
+
+#receipt {
+  background-color:honeydew;
+  width:300px;
+  padding:10px 20px;
+  border-top:5px solid darkolivegreen;
+  margin-bottom:20px;
+
+    span {
+      font-weight:bold;
+      font-size:2em;
+      color:darkolivegreen;
+    }
+}
+
+#receipt-items {
+  background-color:oldlace;
+  width:600px;
+  padding:10px 20px;
+  border-top:5px solid darkgoldenrod;
+  margin-bottom:20px;
+
+    span {
+      font-weight:bold;
+      font-size:2em;
+      color:darkgoldenrod;
+    }
+
+    span:nth-child(2) {
+      font-size:1.2em;
+      color:black;
+    }
 }
