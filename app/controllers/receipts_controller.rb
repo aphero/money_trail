@@ -29,7 +29,9 @@ class ReceiptsController < ApplicationController
   # POST /receipts.json
   def create
     @receipt = Receipt.new(receipt_params)
-
+    if params[:commit] == "Create Line Item"
+      flash[:notice] = "Creating Line Item"
+    end
     respond_to do |format|
       if @receipt.save
         format.html { redirect_to @receipt, notice: 'Receipt was successfully created.' }

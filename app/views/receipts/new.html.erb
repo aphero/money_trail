@@ -1,3 +1,6 @@
-<h1>New Receipt</h1>
-<%= render 'form', receipt: @receipt %>
-<%= link_to 'Back', receipts_path %>
+<div style="margin-left:20px">
+  <h1>New Receipt</h1>
+  <%= render 'form', receipt: @receipt %>
+  <%= link_to 'Receipts', receipts_path %><br/>
+  <%= link_to 'Dashboard', root_path %>
+</div>

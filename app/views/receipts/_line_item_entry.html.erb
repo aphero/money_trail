@@ -1,0 +1,19 @@
+<div class="field" style="float:left;margin-right:10px;">
+  Product Name<br/>
+  <%= text_field :product_name, nil, class:"form-control" %>
+</div>
+
+<div class="field" style="float:left;margin-right:10px;">
+  On Sale?<br/>
+  <%= item.select(:on_sale, options_for_select([["Yes", 1], ["No", 0]])) %>
+</div>
+
+<div class="field" style="float:left;margin-right:10px;">
+  List Price<br/>
+  <%= item.text_field :list_price, class:"form-control" %>
+</div>
+
+<div class="field" style="float:left;margin-right:10px;" id="line-item-sale-price">
+  Sale Price<br/>
+  <%= item.text_field :sale_price, class:"form-control" %>
+</div>

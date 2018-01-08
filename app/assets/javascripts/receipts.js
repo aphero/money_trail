@@ -2,16 +2,6 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-
-$("#store_location_id").change(function() {
-  if(this.value == nil) {
-    $("#add_location").show();
-  } else {
-    $("#add_location").hide();
-  }
-});
-
 $(function() {
   $("#line_item_on_sale").change(function() {
     console.log("line_item_on_sale is changing");
@@ -32,6 +22,14 @@ $(function() {
     } else {
       console.log("Hiding Add Store option.")
       $("#new-store").hide();
+    }
+  });
+
+  $("#store_location_id").change(function() {
+    if(this.value == nil) {
+      $("#add_location").show();
+    } else {
+      $("#add_location").hide();
     }
   });
 });

@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" style="width:800px;">
   <%= form_for(receipt) do |f| %>
     <% if receipt.errors.any? %>
       <div id="error_explanation">
@@ -11,18 +11,19 @@
         </ul>
       </div>
     <% end %>
+    <div style="display:flex;flex-direction:row;justify-content:space-around;width:700px;">
+      <div id="receipt" class="field" style="width:150px;display:flex;flex-direction:column;">
+        <%= f.label :order_number %>
+        <h6>If your receipt has an invoice or order number enter it here.</h6>
+        <%= f.number_field :order_number, size: 10, style:"width:100px;", class:"form-control" %>
+      </div>
 
-    <div class="field">
-      <%= f.label :order_number %><br/>
-      <%= f.number_field :order_number %>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2">
+      <div id="receipt" class="row" style="display:flex;flex-direction:column;width:200px;">
         <div class="form-group">
           <div class='input-group date' id='datetimepicker1'>
             <%= f.label :datetime %>
-            <%= f.text_field :datetime, id: "datetimepicker", class: "form-control" %>
+            <h6>Choose the date and time that the transaction occurred.</h6>
+            <%= f.text_field :datetime, id:"datetimepicker", class:"form-control" %>
             <script type="text/javascript">
               $(function () {
                 $('#datetimepicker').datetimepicker();
@@ -31,86 +32,57 @@
           </div>
         </div>
       </div>
+
+      <div id="store-for-receipt" style="display:flex;flex-direction:column;">
+        <span>STORE</span>
+        <h6>Select a Store or click the link to add a new one.</h6>
+        <%# Dev: Add ability to create a new Store from this view here. %>
+        <div class="field">
+          <%= select(nil, nil, options_for_select(@stores.map{|s|[s.name, s.id]}), prompt: "New Store") %>
+        </div>
+        <%= link_to "New Store", new_store_path %>
+      </div>
     </div>
 
-    <div style="width:600px;display:flex;flex-direction:row;justify-content: space-around;">
-      <div id="store-for-receipt" style="height:130px;display:flex;flex-direction:column;">
-        <span>STORE</span>
-        <%= form_for @store do |s| %>
-          <div class="field">
-            <%= s.collection_select(:id, @stores, :id, :name, prompt: "New Store") %>
-          </div>
-
-          <div class="field" id="new-store">
-            <%= s.label :name %>
-            <%= s.text_field :name %>
-          </div>
-        <% end %>
-      </div>
-
-      <div style="display:flex;flex-direction:column;margin-left:30px;">
+    <div id="receipt-items" style="width:700px;">
+      <span>LINE ITEMS</span>
+      <div style="margin-left:30px;text-align:right;margin-top:-30px;">
         <div class="field">
           <%= f.label :payment_method %>
-          Dropdown of payment methods
-        </div>
-
-        <div class="field">
-          <%= f.label :total %>
-          Total the line items here.<br/>
-          A user should not enter this on their own.
+          <%= f.select(:payment_method, options_for_select([["Cash", 0], ["Debit", 1], ["Credit", 2], ["Check", 3], ["Other", 4]])) %>
         </div>
 
         <div class="field">
           <%= f.label :currency %>
-          A dropdown of currency types.
+          <%= f.select(:currency, options_for_select([["USD", 0], ["Euro", 1]])) %>
+        </div>
+
+        <div class="field">
+          <%= f.label :total %>
+          <%= number_to_currency(receipt.line_items.sum(&:sale_price)) %>
         </div>
       </div>
-    </div>
 
-    <div id="receipt-items">
-      <span>LINE ITEMS</span>
       <% if @line_items.present? %>
         <% @line_items.each do |line_item| %>
-          <%= line_item.product_id %>
-          <%= line_item.on_sale %>
-          <%= line_item.list_price %>
-          <%= line_item.sale_price %>
+          <%= render partial: 'line_item_records', locals: { line_item: line_item } %>
         <% end %>
       <% else %>
-        <span>No Line Items yet.</span>
+        <h3>No Line Items yet.</h3>
       <% end %>
 
       <%= form_for @line_item do |item| %>
-        <div class="field" style="float:left;margin-right:10px;">
-          Product ID<br/>
-          <%= item.number_field :product_id %>
+        <div id="line_item_entry">
+          <%= render partial: 'line_item_entry', locals: { item: item } %>
         </div>
-
-        <div class="field" style="float:left;margin-right:10px;">
-          On Sale?<br/>
-          <%= item.select(:on_sale, options_for_select([["Yes", 1], ["No", 0]])) %>
-        </div>
-
-        <div class="field" style="float:left;margin-right:10px;">
-          List Price<br/>
-          <%= item.text_field :list_price %>
-        </div>
-
-        <div class="field" style="float:left;margin-right:10px;" id="line-item-sale-price">
-          Sale Price<br/>
-          <%= item.text_field :sale_price %>
-        </div>
-
         <div class="actions" style="clear:both;margin-right:10px;">
           <%= item.submit %>
         </div>
-
-        Show added line items here in a table.
       <% end %>
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit for: "new_receipt" %>
     </div>
   <% end %>
 </div>
