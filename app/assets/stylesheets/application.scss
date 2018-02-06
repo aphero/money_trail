@@ -13,6 +13,190 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import 'bootstrap-datetimepicker';
+
+/* GENERAL LAYOUT */
+
+body {
+  font-family:"Open Sans", sans-serif;
+}
+#main {
+  margin:auto;
+  width:61.7%;
+  align:center;
+}
+.shelf {
+  display:flex;
+  flex-direction:row;
+}
+.book {
+  display:flex;
+  flex-direction:column;
+}
+.header {
+  background-color:whitesmoke;
+  margin:20px 0px;
+  font-size:1.25em;
+  padding:5px;
+  font-weight:bold;
+}
+span {
+  line-height:100%;
+}
+
+/* BUTTON SETTINGS */
+
+.pill {
+  border-radius:20px;
+  height:20px;
+  display:inline-block;
+  padding:5px 10px;
+  font-size:.9em;
+  font-weight:bold;
+  vertical-align: middle;
+  border:2px solid var(--dark);
+  background-color:var(--dark);
+  color:var(--light);
+  margin-bottom:5px;
+}
+.pill:hover {
+  color:var(--dark);
+  background-color:var(--light);
+  border:2px solid var(--dark);
+}
+.square {
+  height:25px;
+  width:60px;
+  padding:5px 10px;
+  vertical-align:middle;
+  text-align:center;
+  display:inline-block;
+  border-top:5px solid;
+  border-color:var(--med);
+  background-color:var(--dark);
+  color:var(--light);
+}
+.square:hover {
+  border-color:var(--dark);
+  background-color:var(--med);
+  color:var(--dark);
+}
+
+/* PANEL SETTINGS */
+
+.panel-title {
+  background:linear-gradient(to bottom right, var(--med), var(--dark));
+  padding:5px 10px;
+  color:var(--light);
+  float:left;
+  font-weight:bold;
+  margin:-30px 10px 1px -10px;
+}
+.panel {
+  background-color:var(--light);
+  padding:30px 10px 0px 10px;
+  box-shadow:2px 2px 10px 0px var(--dark);
+  flex-basis:100%;
+  margin:20px 10px;
+}
+
+.flat-panel-title {
+  background-color:var(--dark);
+  color:var(--light);
+  padding:5px 10px;
+  float:left;
+  font-weight:bold;
+  margin:-30px 10px 1px -10px;
+}
+.flat-panel {
+  background-color:var(--light);
+  padding:30px 10px 0px 10px;
+  flex-basis:100%;
+  margin:20px 10px;
+  border:1px solid var(--dark);
+}
+
+.stitch-panel-title {
+  color:var(--light);
+  background-color:var(--dark);
+  border:2px dashed var(--med);
+  box-shadow: 0px 0px 0px 5px var(--dark), 3px 3px 10px 0px var(--dark);
+  padding:5px 10px;
+  float:left;
+  transform:rotate(-2deg);
+  font-weight:bold;
+  margin:-45px 10px 0px -15px;
+}
+.stitch-panel {
+  background-color:var(--light);
+  border:2px dashed var(--dark);
+  box-shadow:0px 0px 0px 5px var(--light), 3px 3px 10px 0px var(--dark);
+  padding:45px 10px 0px 10px;
+  flex-basis:100%;
+  margin:30px 20px;
+}
+
+.border-panel-title {
+  padding:5px 10px;
+  color:var(--light);
+  background-color:var(--dark);
+  float:left;
+  font-weight:bold;
+  margin:-30px 10px 10px -20px;
+}
+.border-panel {
+  border:solid var(--dark);
+  padding:30px 20px 0px 20px;
+  flex-basis:100%;
+  margin:30px 20px;
+}
+
+.no-panel-title {
+  padding:5px;
+  float:left;
+  font-weight:bold;
+  margin:-30px 10px 10px -20px;
+}
+.no-panel {
+  padding:30px 20px;
+  flex-basis:100%;
+  margin:30px 20px;
+}
+/* COLORS */
+
+/* Just make these into generic colors and give each a set of dark, medium and light to make
+   styling easier to follow. */
+
+  /* DARK */
+.brown {
+  --dark:darkgoldenrod;
+  --med:wheat;
+  --light:beige;
+}
+.red {
+  --dark:crimson;
+  --med:lightcoral;
+  --light:mistyrose;
+}
+.blue {
+  --dark:steelblue;
+  --med:powderblue;
+  --light:aliceblue;
+}
+.gold {
+  --dark:gold;
+  --med:cornsilk;
+  --light:ivory;
+}
+.green {
+  --dark:darkolivegreen;
+  --med:yellowgreen;
+  --light:honeydew;
+}
+.gray {
+  --dark:dimgray;
+  --med:darkgray;
+  --light:whitesmoke;
+}

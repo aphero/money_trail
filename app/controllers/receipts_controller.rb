@@ -14,7 +14,7 @@ class ReceiptsController < ApplicationController
 
   # GET /receipts/new
   def new
-    @receipt = Receipt.new
+    @receipt = Receipt.where(order_number: nil, datetime: nil, store_id: nil).last || Receipt.create
     @line_item = LineItem.new(receipt_id: @receipt.id)
     @line_items = LineItem.where(receipt_id: @receipt.id)
     @store = Store.new

@@ -1,6 +1,8 @@
 <div style="margin-left:20px">
-  <h1>New Receipt</h1>
+  <div class="header">
+    New Receipt #<%= @receipt.id %>
+  </div>
   <%= render 'form', receipt: @receipt %>
-  <%= link_to 'Receipts', receipts_path %><br/>
-  <%= link_to 'Dashboard', root_path %>
+  <%= link_to 'Receipts', receipts_path, class:"green pill" %><br/>
+  <%= link_to 'Dashboard', root_path, class:"red pill" %>
 </div>
